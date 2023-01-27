@@ -1,0 +1,65 @@
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+.flexBox {
+  display: flex;
+  flex-direction: column;
+  column-gap: 30px;
+}
+
+.verticalBox {
+  display: flex;
+  flex-direction: column;
+  row-gap: 30px;
+}
+
+.upload-btn-wrapper {
+  position: relative;
+  overflow: hidden;
+  display: inline-block;
+  cursor: pointer;
+  margin: auto;
+}
+
+.upload-btn-wrapper input[type=file] {
+  font-size: 1px;
+  position: absolute;
+  left: 0;
+  top: 0;
+  opacity: 0;
+  padding: 99px;
+}
+
+input[type=file] {
+  cursor: pointer;
+}
+
+input[type=file]:disabled {
+  cursor: not-allowed;
+}
+
+.truncate {
+  width: 130px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.regulerButton {
+  width: 20px;
+  height: 20px;
+  border: 2px solid;
+  padding: 0;
+  margin-left: 5px;
+  border-radius: 5px;
+}
