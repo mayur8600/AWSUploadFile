@@ -19,3 +19,12 @@ server environment file key with value
 #### AWS_SECRET_KEY = '' // Please Enter AWS secret Key
 #### AWS_REGION = 'ap-south-1' // Region as selected for s3
 #### AWS_BUCKET = 'globaluser' // Bucket name used while creation of S3 bucket
+
+## Request URL
+- POST
+#### http://localhost:3001/ {To upload file}
+#### http://localhost:3001/json {To send JSON file}
+
+- GET
+#### http://localhost:3001/list {Get list of uploaded video url}
+#### http://localhost:3001/jsonList {Get Json Object list}
