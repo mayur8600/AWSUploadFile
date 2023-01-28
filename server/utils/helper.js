@@ -12,13 +12,18 @@ const uploadFileToAWS = async (fileData) => {
     try {
         let fileExtension;
         if (fileData?.file?.mimetype) {
-            fileExtension = fileData?.file?.mimetype.split("/")[1];
+            if(fileData?.file?.mimetype.split("/")[0] === 'video' || fileData?.file?.mimetype.split("/")[1] === 'json'){
+                fileExtension = fileData?.file?.mimetype.split("/")[1];
+            }
+            else{
+                return false
+            }
         }
         const fileUploadResult = await client.uploadFile(fileData?.file?.data, {
             bucket: process.env.AWS_BUCKET,
             key: `${fileData?.file?.name?.trim()}`
         });
-        return { URL: `https://${process.env.AWS_BUCKET}.s3.${process.env.AWS_REGION}.amazonaws.com/${fileData?.file?.name?.trim()}` }
+        return { URL: `https://${process.env.AWS_BUCKET}.s3.${process.env.AWS_REGION}.amazonaws.com/${fileData?.file?.name?.trim()}`, fileType : fileExtension }
     } catch (error) {
         return error
     }

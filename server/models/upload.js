@@ -5,6 +5,10 @@ const UploadSchema = new Schema({
         type: String,
         required: true
     },
+    fileType: {
+        type: String,
+        required: true
+    },
     timestamp: {
         type: String,
         default: Date.now()

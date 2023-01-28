@@ -24,13 +24,20 @@ app.post("/", async function (req, res) {
         const url = await uploadFileToAWS(req.files);
         if (url?.URL) {
             const updateUrl = await Upload.create({
-                link: url?.URL
+                link: url?.URL,
+                fileType: url?.fileType
+
             })
             if (updateUrl) {
                 return res.send(200, req.files);
             }
+            else{
+                res.send(400, {})
+            }
         }
-        res.send(400, {});
+        else{
+            res.send(400, {})
+        }
     } catch (error) {
         res.send(400, {})
     }
