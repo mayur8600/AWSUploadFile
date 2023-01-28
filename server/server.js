@@ -5,6 +5,7 @@ const cors = require('cors');
 const mongoose = require('mongoose');
 const { uploadFileToAWS } = require('./utils/helper');
 const Upload = require('./models/upload');
+const JsonFile = require('./models/json');
 const app = express();
 dotenv.config();
 app.use(cors());
@@ -21,7 +22,6 @@ mongoose.connect(process.env.MONGO_DB_URL, {
 app.post("/", async function (req, res) {
     try {
         const url = await uploadFileToAWS(req.files);
-        console.log(url)
         if (url?.URL) {
             const updateUrl = await Upload.create({
                 link: url?.URL
@@ -39,7 +39,26 @@ app.post("/", async function (req, res) {
 app.get("/list", async function (req, res) {
     try {
         const list = await Upload.find();
-        console.log(list)
+        res.send(200, list);
+    } catch (error) {
+        res.json(400, {})
+    }
+});
+
+app.post("/json", async function (req, res) {
+    try {
+        const jsonObj = await JsonFile.create({
+            jsonData: req.body
+        });
+        res.send(200, jsonObj);
+    } catch (error) {
+        res.json(400, {})
+    }
+});
+
+app.get("/jsonList", async function (req, res) {
+    try {
+        const list = await JsonFile.find();
         res.send(200, list);
     } catch (error) {
         res.json(400, {})
