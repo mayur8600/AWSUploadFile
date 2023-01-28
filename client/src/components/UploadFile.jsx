@@ -151,9 +151,6 @@ function UploadFile() {
           {isJson ? <div className="flexBox">
               <div className="upload-btn-wrapper">
                   <Button
-                      // isLoading={isLoading && receiptFileName}
-                      // isDisabled={isLoading && receiptFileName}
-                      // loadingText="Uploading"
                       variant="outlined"
                       textTransform='none'
                   >
@@ -161,7 +158,6 @@ function UploadFile() {
                   </Button>
                   <input type="file"
                       name="file"
-                      //   disabled={isLoading}
                       onChange={(event) => { setFile(event); setFileName(event?.target?.files[0]?.name) }} />
               </div>
               {fileName && <div>
